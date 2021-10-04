@@ -1,6 +1,6 @@
 # IndoWiki
 
-IndoWiki is a knowledge-graph dataset taken from (WikiData)[https://www.wikidata.org/] and aligned with (Wikipedia Bahasa Indonesia)[https://id.wikipedia.org/] as it's corpus. IndoWiki is an Indonesian version of (Wikidata5M)[https://deepgraphlearning.github.io/project/wikidata5m] - a knowledge graph dataset used in (KEPLER)[https://arxiv.org/pdf/1911.06136.pdf].
+IndoWiki is a knowledge-graph dataset taken from [WikiData](https://www.wikidata.org/) and aligned with [Wikipedia Bahasa Indonesia](https://id.wikipedia.org/) as it's corpus. IndoWiki is an Indonesian version of [Wikidata5M](https://deepgraphlearning.github.io/project/wikidata5m) - a knowledge graph dataset used in [KEPLER](https://arxiv.org/pdf/1911.06136.pdf).
 
 ## Data Structure
 
