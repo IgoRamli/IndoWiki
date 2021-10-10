@@ -15,10 +15,12 @@ The main dataset can be accesed in [this](https://drive.google.com/drive/folders
 
 | Setting      | Split | #Entity | #Relation | #Triplet |
 |--------------|-------|---------|-----------|----------|
-| Transductive | Train | 533611  | 939       | 2648390  |
-|              | Test  | 1132    | 140       | 663      |
-| Inductive    | Train | 532936  | 939       | 2610130  |
-|              | Test  | 664     | 2         | 663      |
+| Transductive | Train | 533611  | 939       | 2629235  |
+|              | Valid | 18745   | 386       | 13245    |
+|              | Test  | 20774   | 409       | 14818    |
+| Inductive    | Train | 513695  | 931       | 1968029  |
+|              | Valid | 2890    | 209       | 13245    |
+|              | Test  | 4639    | 238       | 14818    |
 
 ## Pipeline
 
