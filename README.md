@@ -65,13 +65,14 @@ python extract_titles.py dump-idwiki.json.gz --sitelink=idwiki --out-file=titles
 
 With a file containing contents for each title, and a mapping between entity IDs and titles, we can create the indowiki_text.txt file
 ```
-python map_entities.py wiki.txt titles.txt --out-file=indowiki_text.txt --missing-file=missing.txt
+python map_entities.py wiki.txt titles.txt --out-file=indowiki_text.txt --missing-file=missing.txt --unused-file=unused.txt
 ```
 Sometimes, some entities with a title in WikiData dumps may not have an article in our Wikipedia dumps. There may be several reasons for this:
 - The Wikipedia dump is outdated and the entity title has changed
 - The title given in the WikiData dump is a redirect and the title given by WikiData does not match the title at Wikipedia
 - The given WikiData title has no article. This can happen for entities whose title does not lead to it's main article, such as 'Category:History of Benin'.
-In any case, the aforementioned entity will not be written and is considered invalid. If the missing-file parameter is defined (like in the example command above), a list of missing entities will be written in the missing file.
+In any case, the aforementioned entity will not be written and is considered invalid. If the missing-file parameter is defined (like in the example command above), a list of missing entities will be written in the missing file log.
+Conversely, there may be cases where a Wikipedia article does not have any WikiData entity linked to it. In this case, if the unused-file parameter is defined, a list of unused article titles will be written in the unused file log.
 
 ### Extracting Triplets
 
@@ -84,11 +85,9 @@ Triplets will be shuffled in the resulting file. Shuffling list of triplets mini
 ### Creating a Split
 
 There are two settings of Knowledge Graph splitting:
-- Transductive: Entities and relations are shared across splits. Only triplets are disjointed between splits. Formally, there are no pair of triplets $$ (h_1, r_1, t_1) \in KG_{train}, (h_2, r_2, t_2) \in KG_{test} $$ such that $$ (h_1, r_1, t_1) = (h_2, r_2, t_2) $$
-- Inductive: Entities, relations, and triplets are disjointed between splits. Formally, for every pair of triplets $$ (h_1, r_1, t_1) \in KG_{train}, (h_2, r_2, t_2) \in KG_{test} $$,
-    - $$ h_1 != h_2 $$
-    - $$ r_1 != r_2 $$
-    - $$ t_1 != t_2 $$
+- Transductive: Entities and relations are shared across splits. Only triplets are disjointed between splits. Formally, there are no pair of triplets <img src="https://render.githubusercontent.com/render/math?math=(h_1, r_1, t_1) \in KG_{train}, (h_2, r_2, t_2) \in KG_{test}"> such that <img src="https://render.githubusercontent.com/render/math?math=(h_1, r_1, t_1) = (h_2, r_2, t_2)">
+- Inductive: Entities, relations, and triplets are disjointed between splits. Formally, for every pair of triplets <img src="https://render.githubusercontent.com/render/math?math=(h_1, r_1, t_1) \in KG_{train}, (h_2, r_2, t_2) \in KG_{test}">, <img src="https://render.githubusercontent.com/render/math?math=h_1 \neq h_2"> and <img src="https://render.githubusercontent.com/render/math?math=t_1 \neq t_2">
+
 
 Perform a transductive split with this command
 ```
