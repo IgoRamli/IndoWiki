@@ -7,8 +7,10 @@ IndoWiki is a knowledge-graph dataset taken from [WikiData](https://www.wikidata
 IndoWiki dataset consists of several files:
 - indowiki_text.txt
 - indowiki_transductive_train.txt
+- indowiki_transductive_valid.txt
 - indowiki_transductive_test.txt
 - indowiki_inductive_train.txt
+- indowiki_inductive_valid.txt
 - indowiki_inductive_test.txt
 
 The main dataset can be accesed in [this](https://drive.google.com/drive/folders/1V79VrSJ_ljz652iETARjHoB_zEfEIxV1?usp=sharing) directory. The dataset is created using WikiData JSON dump downloaded at 2021-09-30 and Wikipedia Bahasa Indonesia dump downloaded at 2021-10-01. Due to the large size of each dump (\~100GB for WikiData, \~600MB for Wikipedia Bahasa Indonesia), they will not be included in this repository.
@@ -91,16 +93,22 @@ There are two settings of Knowledge Graph splitting:
 
 Perform a transductive split with this command
 ```
-python split_triplets.py indowiki_triplets.txt --setting=transductive --test-percentage=0.025 --out-file-prefix=indowiki_transductive
+python split_triplets.py indowiki_triplets.txt --setting transductive --valid 13245 --test 14818 --out-file-prefix indowiki_transductive
 ```
 and an inductive split with this command
 ```
-python split_triplets.py indowiki_triplets.txt --setting=inductive --test-percentage=0.025 --out-file-prefix=indowiki_inductive
+python split_triplets.py indowiki_triplets.txt --setting inductive --out-file-prefix indowiki_inductive
 ```
+Note that results from the two commands above may not be reproducible
 
 ### (Optional) Test Inductivity
 
+General informations of a data split (train/valid/test) can be obtained using the `analyze_dataset.py` program. Below is an example of obtaining the number of entities, relations, and triplets present in the indowiki_inductive_test text file:
+```
+python analyze_dataset.py indowiki_inductive_test.txt
+```
+
 If you are not sure whether two KE splits are really inductive (have disjoint sets of entities), you can perform an inductivity check:
 ```
-python test_inductivity.py indowiki_inductive_train.txt indowiki_inductive_test.txt
+python test_inductivity.py indowiki_inductive_train.txt indowiki_inductive_test.txt indowiki_inductive_test.txt
 ```
